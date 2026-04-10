@@ -1,0 +1,26 @@
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Database & Logs
+php-backend/database/*.db
+php-backend/database/*.sqlite
+debug_log.txt
+*.log
+
+# Dependency Directories
+vendor/
+node_modules/
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Deployment/Temp
+.gemini/
+.env
+router.php
+serve.bat

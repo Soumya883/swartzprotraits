@@ -1,0 +1,16 @@
+Options +FollowSymLinks -MultiViews
+RewriteEngine On
+
+# Ensure mod_rewrite is enabled
+# If the app is in a subdirectory (e.g. /q3/), uncomment and set RewriteBase
+# RewriteBase /q3/
+
+# Route /api/ requests to the backend entry point
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ php-backend/public/index.php [L,QSA]
+
+# Optional: Redirect to index.html if file doesn't exist (Single Page App style)
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule . index.html [L]

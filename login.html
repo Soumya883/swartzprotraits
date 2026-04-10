@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | PhotoBiz Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c9a96e;
+            --dark: #0d0d0d;
+            --dark-2: #161616;
+            --off-white: #f5f0e8;
+            --text-muted: #8a8580;
+            --border: rgba(201, 169, 110, 0.2);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--dark);
+            color: var(--off-white);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .login-wrap {
+            width: 100%;
+            max-width: 440px;
+            padding: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Abstract background elements */
+        .bg-glow {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw; height: 80vw;
+            background: radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .logo h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        .logo sup { font-size: 10px; color: var(--text-muted); }
+
+        .login-card {
+            background: var(--dark-2);
+            border: 1px solid var(--border);
+            padding: 48px 40px;
+            border-radius: 4px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-group { margin-bottom: 24px; }
+
+        label {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-login:hover { opacity: 0.9; }
+
+        .btn-login:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .status-msg {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 24px;
+            min-height: 18px;
+        }
+
+        .error { color: #e74c3c; display: none; }
+        .success { color: #2ecc71; display: none; }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 32px;
+            font-size: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .back-link:hover { color: var(--gold); }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    
+    <div class="login-wrap">
+        <div class="logo">
+            <h1>photobiz<sup>&reg;</sup></h1>
+        </div>
+
+        <div class="login-card">
+            <h2 class="title">Welcome Back</h2>
+            <p class="subtitle">Secure Portal Access</p>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="name@example.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-login" id="submit-btn">Enter Portal</button>
+            </form>
+
+            <div id="status-error" class="status-msg error">Invalid credentials. Please try again.</div>
+            <div id="status-success" class="status-msg success">Access granted. Redirecting...</div>
+        </div>
+
+        <a href="index.html" class="back-link">← Return to Website</a>
+    </div>
+
+    <script>
+        const API_BASE = (window.location.hostname === 'localhost' && window.location.port !== '8081' && window.location.port !== '') 
+            ? 'http://localhost:8081' 
+            : `${window.location.protocol}//${window.location.host}${window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'))}`;
+
+        const loginForm = document.getElementById('login-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const errEl = document.getElementById('status-error');
+        const succEl = document.getElementById('status-success');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            errEl.style.display = 'none';
+            succEl.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Authenticating...';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    succEl.style.display = 'block';
+                    
+                    // Store tokens
+                    localStorage.setItem('access_token', data.data.access_token);
+                    localStorage.setItem('refresh_token', data.data.refresh_token);
+                    localStorage.setItem('user_name', data.data.user.name);
+                    localStorage.setItem('user_role', data.data.user.role);
+
+                    // Route based on role
+                    setTimeout(() => {
+                        if (data.data.user.role === 'admin') {
+                            window.location.href = 'dashboard.html';
+                        } else {
+                            window.location.href = 'client.html';
+                        }
+                    }, 800);
+                } else {
+                    errEl.style.display = 'block';
+                    errEl.textContent = data.message || 'Login failed.';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enter Portal';
+                }
+            } catch (err) {
+                errEl.style.display = 'block';
+                errEl.textContent = 'Connection error. Please try again later.';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enter Portal';
+            }
+        });
+    </script>
+</body>
+</html>
