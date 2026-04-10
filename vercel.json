@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "functions": {
+    "php-backend/public/index.php": {
+      "runtime": "vercel-php@0.6.0"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/php-backend/public/index.php"
+    }
+  ]
+}
